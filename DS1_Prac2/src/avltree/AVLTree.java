@@ -1,0 +1,199 @@
+package avltree;
+import binarytree.BinaryTree;
+import binarytree.Position;
+import binarysearchtree.LinkedBST;
+//
+import java.util.Comparator;
+/**
+ * An AVLTree is an implementation of binarysearchtree.BinaySearchTree that automatically 
+ * performs AVL rebalancing after insertion and deletion of elements.
+ * 
+ * @author Stephan Jamieson
+ * @version 2/3/2016
+ */
+public class AVLTree<E> extends LinkedBST<E>  {
+
+    /**
+     * Create a new AVLNode containing the given element.</br>
+     * Methods that create nodes MUST use this.</br> 
+     * This method overrides that in LinkedBinaryTree.</br>
+     */
+    @Override
+    protected AVLNode<E> makeNode(E element) {
+        return new AVLNode<E>(this, element);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    /**
+     * Convenience method for obtaining the BSTNode associated with a given position.
+     */
+    protected AVLNode<E> getNode(Position<E> p) {
+        assert(p.getOwner()==this);
+        return (AVLNode<E>)p;
+    }
+    
+    /**
+     * Create an AVLTree that uses the given comparator to order its elements.
+     */
+    public AVLTree(Comparator<E> comparator) {
+        super(comparator);
+    }
+    
+    @Override
+    /**
+     * Insert the given element into the tree, rebalancing if necessary, and return the 
+     * position of the new node.</br>
+     * If an instance of element is already in the tree then this method overwrites it with the given value. (Useful when implementing a map.)
+     */
+
+	
+
+    public Position<E> insert(E element) {
+		
+		Position<E> pos = super.insert(element);
+		Position<E> par = pos;
+		Position<E> parpar;
+
+		if (this.isRoot(pos))
+			{
+			return null;
+			}
+		
+		if (this.isRoot(this.getParent(pos)))
+			{
+			return null;
+			}			
+			
+		else
+			{
+			
+			
+			while (this.isRoot(par) == false)
+				{
+				par = this.getParent(par);	
+					
+				
+				
+				
+				int leftHeight = 0;
+				int rightHeight = 0;
+				
+				if (this.hasRight(par))
+					{
+					rightHeight = height(this.getRight(par));
+					
+					}
+
+				if (this.hasLeft(par))
+					{
+					leftHeight = height(this.getLeft(par));
+					
+					}
+							
+			
+
+				if (leftHeight - rightHeight > 1 || rightHeight - leftHeight > 1)
+					{
+					
+					if (height(this.getRight(pos)) > height(this.getLeft(pos)))
+						{
+						this.restructure(getRight(pos));
+						}
+					else
+						{
+						this.restructure(getLeft(pos));
+						}
+					
+					}
+				pos = par;
+				
+				
+				}
+				
+			
+			}
+
+			
+			
+		return null;
+		
+		
+    }
+
+	public int  height(Position <E> p)
+		{
+		if (p == null)
+			{
+			return 0;
+			}
+
+	    	else
+			{
+			return 1 + Math.max(height(this.getLeft(p)), height(this.getRight(p)));
+			}
+		}
+	
+
+
+    @Override
+    /**
+     * Locate and remove the given element from the tree, returning the position of its parent or <code>null</code> if root.
+     */    
+    public Position<E> delete(E element) {
+		Position<E> pos = super.delete(element);
+		int leftHeight = 0;
+		int rightHeight = 0;
+		
+		if (this.hasRight(pos))
+			{
+			rightHeight = height(this.getRight(pos));
+			}
+
+		if (this.hasLeft(pos))
+			{
+			leftHeight = height(this.getLeft(pos));
+			}
+					
+	
+			if (leftHeight - rightHeight > 1 || rightHeight - leftHeight > 1)
+				{
+				if (height(this.getRight(pos)) > height(this.getLeft(pos)))
+					{
+					Position <E> child1 = this.getRight(pos);
+					if (height(this.getRight(child1)) > height(this.getLeft(child1)))
+						{
+						this.restructure(this.getRight(child1));
+						}
+					else
+						{
+						this.restructure(this.getLeft(child1));
+						}
+					}
+
+				else
+					{
+					Position <E> child2 = this.getRight(pos);
+					if (height(this.getRight(child2)) > height(this.getLeft(child2)))
+						{
+						this.restructure(this.getRight(child2));
+						}
+					else
+						{
+						this.restructure(this.getLeft(child2));
+						}
+					}
+				}
+		return null;
+	
+    }
+   
+    private int getAttrib(Position<E> p) {
+        return getNode(p).getAttrib();
+    }
+    
+    private int setAttrib(Position<E> p, int value) {
+        return getNode(p).setAttrib(value);
+    }
+    
+}

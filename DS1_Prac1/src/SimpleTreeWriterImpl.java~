@@ -1,0 +1,122 @@
+import java.io.PrintStream;
+import java.util.*;
+import java.lang.*;
+
+/**
+ * Abstract definition of an object for printing a simple binary tree structure. 
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class SimpleTreeWriterImpl implements SimpleTreeWriter{
+	PrintStream destination;
+    public SimpleTreeWriterImpl(PrintStream stream)
+	{
+	destination = stream;
+	}
+
+    /**
+     * Set the PrintStream object to be used for output.
+     * An implementing class may wish to supplement this functionality with a constructor 
+     * that achieves the the same effect. 
+     */
+    public void setDestination(PrintStream stream)
+	{
+	destination = stream;
+	}
+    
+    /**
+     * Print a textual representation of the given tree structure to the PrintStream object
+     * specified with <code>setDestination</code>.
+     */
+	
+	public void printNodeSpace(int listNum, int nodeSpaces)
+		{
+
+		if ((listNum %2) == 0)
+			{
+			for (int p = 0; p < nodeSpaces; p ++)
+				{
+				destination.print("-");
+				}
+			}
+		else 
+			{
+			for (int k = 0; k < nodeSpaces; k ++)
+				{
+				destination.print(" ");
+				}
+			}	
+		}
+
+    public void write(BinaryTreeNode tree)
+	{
+	
+     
+	int height = tree.getHeight();
+	int largest = tree.getLargest();
+	String size = largest + "";
+	int maxlength = size.length();
+	int zeroNode = TreeUtils.levelZero(tree).get(0).getItem();
+	List<BinaryTreeNode> theArray = new ArrayList<BinaryTreeNode>();
+	String adan = "";
+
+	theArray = TreeUtils.levelZero(tree);
+
+	for (int y = 1; y <(Math.round(maxlength*(Math.pow(2, height) - 1)/2) - 0.5); y ++)
+		{
+		destination.print(" ");
+		}
+	destination.println(zeroNode);
+
+	List<BinaryTreeNode> theNextArray = new ArrayList<BinaryTreeNode>();
+	theNextArray = TreeUtils.nextLevel(TreeUtils.levelZero(tree));
+	
+	int level;
+	for (level = 1; level < height; level ++)
+		{
+		for (int k = 1; k <(Math.round(maxlength*(Math.pow(2, height - level) - 1)/2) - 0.5); k ++)
+			{
+			destination.print(" ");
+			}
+		
+		for (int i = 0; i <theNextArray.size(); i ++)
+			{
+				if ( theNextArray.get(i).getItem() == null)
+					{
+						for (int q = 0; q < maxlength; q ++)
+							{
+							destination.print(" ");
+							}
+					}
+				else
+					{
+					adan = "" + theNextArray.get(i).getItem();
+					while (adan.length() < maxlength)
+						{
+						adan = "0" + adan;
+						}
+					destination.print(adan);
+					}
+				int nodeS = (int)maxlength*(int)(Math.pow(2, height - level) - 1);
+				printNodeSpace(i, nodeS);
+			}
+		
+		destination.println("");
+
+		theNextArray = TreeUtils.nextLevel(theNextArray);
+
+
+		//destination.print(String.format("%" + maxlength*(Math.pow(2, height) - 1)/2 + "s", " ") + zeroNode);
+		}
+
+
+
+	}
+
+
+
+
+
+
+}
