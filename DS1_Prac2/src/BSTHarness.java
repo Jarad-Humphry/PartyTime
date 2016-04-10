@@ -91,7 +91,7 @@ public class BSTHarness {
         }
         BinaryTreeWriter<Integer> writer = new SimpleTreeWriter<Integer>(System.out);
         writer.print(tree);
-	tree.restructure(tree.find(15));
+	tree.rotate(tree.find(15));
 	writer.print(tree);
     }
     

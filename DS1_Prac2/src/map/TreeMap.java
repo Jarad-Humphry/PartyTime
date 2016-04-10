@@ -13,9 +13,8 @@ public class TreeMap<K, V> implements Map<K, V> {
 
     // The tree that stores the key-value pairs in this map.
     private AVLTree<Entry<K, V>> tree;
-	
 	private Comparator<K> com;
-	private EntryComparator<Entry<K, V>> entryCom;
+	private AVLTree<Entry<K, V>> tr;
     
     // A Comparator that is used to compare map entries based on their key values.
 	// EntryComparator is a wapper for a keyComparator.
@@ -23,7 +22,7 @@ public class TreeMap<K, V> implements Map<K, V> {
 		// Your code here.
         
 		public int compare(E e1, E e2) { 
-			return com.compare(e1.getKey(), e2.getKey())
+			return com.compare(e1.getKey(), e2.getKey());
 		}
     }
 
@@ -32,6 +31,9 @@ public class TreeMap<K, V> implements Map<K, V> {
      */  
     public TreeMap(Comparator<K> keyComparator) {
 		// Your code here
+		c = keyComparator;
+		entryCom = new EntryComparator<Entry<K, V>>;
+		tr = new AVLTree<Entry<K, V>> (entryCom);
     }
     
     /**
@@ -71,7 +73,7 @@ public class TreeMap<K, V> implements Map<K, V> {
      * Returns null if there is no entry for this key or the value associated with this key is in fact null.
      */
     public V get(K key) {
-		// Your code here.
+		
 		return null;
     }
    

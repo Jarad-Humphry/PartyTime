@@ -43,7 +43,7 @@ public class BSTHarness {
 	//System.out.println(tree.height(tree.find(43)));
 	
 
-	tree.delete(70);
+	tree.delete(6);
 	writer.print(tree);
     }
     

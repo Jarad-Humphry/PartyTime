@@ -1,4 +1,4 @@
-# Makefile for Data Structures Binary Search Tree Assignments
+# Makefile for Hash Table Assignments
 
 LIB = ../lib
 SRCDIR = src
@@ -16,8 +16,8 @@ JAVAC = javac
 JFLAGS = -g -d $(BINDIR) -cp $(BINDIR):$(JUNIT)
 
 
-vpath %.java $(SRCDIR)/binarytree:$(SRCDIR)/binarysearchtree:$(SRCDIR)/avltree:$(SRCDIR)/map:$(SRCDIR):$(TESTDIR)
-vpath %.class $(BINDIR)/binarytree:$(BINDIR)/binarysearchtree:$(BINDIR)/avltree:$(BINDIR)/map:$(BINDIR)
+vpath %.java $(SRCDIR)/dictionary:$(SRCDIR):$(TESTDIR)
+vpath %.class $(BINDIR)/dictionary:$(BINDIR)
 
 # define general build rule for java sources
 .SUFFIXES:  .java  .class
@@ -28,27 +28,42 @@ vpath %.class $(BINDIR)/binarytree:$(BINDIR)/binarysearchtree:$(BINDIR)/avltree:
 #default rule - will be invoked by make
 
 
-all: Position.class Node.class LinkedBinaryTree.class BinaryTreeWriter.class SimpleTreeWriter.class \
-	BinarySearchTree.class BSTNode.class LinkedBST.class \
-	AVLNode.class AVLTree.class \
-	Entry.class Map.class TreeMap.class \
-	BSTHarness.class
+all: WordType.class \
+Definition.class \
+Dictionary.class \
+Entry.class \
+ChainedEntry.class \
+Monitorable.class \
+AbstractHashTable.class \
+LPHashTable.class \
+QPHashTable.class \
+SCHashTable.class \
+ Loader.class \
+ WordType.class \
+ DataReader.class \
+ Randomizer.class \
+ Nonsense.class \
+ LoadTest.class \
+ SearchTest.class \
+AutoTest.class \
 
-# The following two targets deal with the mutual dependency between Position and BinaryTree
-Position.class: BinaryTree.class
 
-BinaryTree.class:
-	rm -rf $(BINDIR)/binarytree/Position.class $(BINDIR)/binarytree/BinaryTree.class
-	javac $(JFLAGS) $(SRCDIR)/binarytree/Position.java $(SRCDIR)/binarytree/BinaryTree.java
+	
+
+# The following two targets deal with the mutual dependency between Dictionary and Entry
+Entry.class: Dictionary.class
+
+Dictionary.class:
+	rm -rf $(BINDIR)/dictionary/Entry.class $(BINDIR)/dictionary/Dictionary.class
+	javac $(JFLAGS) $(SRCDIR)/dictionary/Entry.java $(SRCDIR)/dictionary/Dictionary.java
 	
 		
 # Rules for generating documentation
 doc:
-	javadoc -d $(DOCDIR) $(SRCDIR)/binarytree/*.java $(SRCDIR)/binarysearchtree/*.java $(SRCDIR)/avltree/*.java
-
+	javadoc -d $(DOCDIR) $(SRCDIR)/dictionary/*.java 
 # Rules for unit testing
 # Add additional Testxx.class file to this line and to TestSuite.java
-test_classes: all TestSuite.class
+test_classes: 
 
 test: test_classes
 	java -ea -cp $(BINDIR):$(JUNIT) org.junit.runner.JUnitCore TestSuite
