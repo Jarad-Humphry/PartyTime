@@ -46,14 +46,28 @@ public abstract class AbstractHashTable  extends Monitorable implements Dictiona
     public boolean containsWord(String word) {
 	// Your code here.
         int value = hashFunction(word);
-	if (table[value].equals(word))
-		{
-		return true;
-		}
-	
-	else 
+	if (table[value] == null)
 		{
 		return false;
+		}
+
+	if (table.length <= value)
+		{
+		return false;
+		}
+
+	else
+		{
+		
+		if (table[value].getWord().equals(word))
+			{
+			return true;
+			}
+	
+		else 
+			{
+			return false;
+			}
 		}
 	
     }
@@ -81,9 +95,10 @@ public abstract class AbstractHashTable  extends Monitorable implements Dictiona
 	if (containsWord(word) == false)
 		{
 		table[index] = e;
+		entries ++;
 		} 
 
-	else if (table[index].getWord() == null)
+	else if (table[index].getWord() != null)
 		{
 		table[index].addDefinition(definition);
 		}
@@ -92,6 +107,8 @@ public abstract class AbstractHashTable  extends Monitorable implements Dictiona
 		{
 		rebuild();
 		}
+
+	
 	
     }
     
