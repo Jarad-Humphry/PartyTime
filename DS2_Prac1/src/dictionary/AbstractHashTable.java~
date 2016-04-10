@@ -46,7 +46,7 @@ public abstract class AbstractHashTable  extends Monitorable implements Dictiona
     public boolean containsWord(String word) {
 	// Your code here.
         int value = hashFunction(word);
-	if (table[value].equals(word))
+	if (table[value].equals(word)
 		{
 		return true;
 		}

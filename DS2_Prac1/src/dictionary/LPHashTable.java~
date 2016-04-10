@@ -34,7 +34,7 @@ public class LPHashTable extends AbstractHashTable {
 				{
 				if (i == index)
 					{
-					return -1;
+					return null;
 					}
 				if (i == table.length)
 					{
