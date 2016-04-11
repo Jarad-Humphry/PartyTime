@@ -46,7 +46,7 @@ SCHashTable.class \
  LoadTest.class \
  SearchTest.class \
 AutoTest.class \
-
+TestHarness.class
 
 
 	

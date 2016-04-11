@@ -30,24 +30,26 @@ public class LPHashTable extends AbstractHashTable {
 			return index;
 			}
 		
-		if (table[index].getWord() == word)
+		if (table[index].getWord().equals(word))
 			{
 			return index;
 			}
 
 		i = index;
-		i++;
+		
 		while (table[i]!=null)
 
 			{
+			if (i == table.length)
+				{
+				i = 0;
+				}
+
 			if (table[i].getWord().equals(word))
 				{
 				return i;
 				}
-			if (i == table.length-1)
-				{
-				i = 0;
-				}
+			
 			if (i==index)
 				{
 				return -1;
@@ -62,7 +64,7 @@ public class LPHashTable extends AbstractHashTable {
 		
 	}
 
-	@Override
+	/*@Override
     public boolean containsWord(String word) {
 	// Your code here.
         int value = hashFunction(word);
@@ -71,7 +73,7 @@ public class LPHashTable extends AbstractHashTable {
 		{
 		return false;
 		}
-	if (table[value].getWord.equals(word))
+	if (table[value].getWord().equals(word))
 		{
 		return true;
 		}
@@ -84,73 +86,125 @@ public class LPHashTable extends AbstractHashTable {
 	else
 		{
 		int i = value;
-		while (!table[i].getWord().equals(word))
+		i ++;
+		while (table[i] != null)
 			{
-			if (i == table.length-1)
-				{
-				i = 0;
-				}
-			if (table[i] == null)
+			if (i==value)
 				{
 				return false;
 				}
 
+			if (i == table.length)
+				{
+				i = 0;
+				}
+
+			if (table[i].getWord().equals(word))
+				{
+				return true;
+				}
+
 			i++;
 			}
-		return true;
+		return false;
 
-		/*if (table[value].getWord().equals(word))
-			{
-			return true;
-			}
-	
-		else 
-			{
-			return false;
-			}*/
+		
 		}
 	
     }
     	@Override
     public List<Definition> getDefinitions(String word) {
 	// Your code here.
-	if (containsWord(word) == false)
+	int index = hashFunction(word); 
+	for (int i = 0; i<=table.length; i ++)
 		{
-		return null;
+		index = index + i;
+		if (index>=table.length)
+			{
+			index = index - table.length;
+			}
+		
+		if (table[index] == null)
+			{
+			return null;
+			}
+
+		else if (table[index].getWord().equals(word))
+			{
+			return table[index].getDefinitions();
+			}
 		}
-	else
-		{
-        	int index = findIndex(word);
-		return table[index].getDefinitions();
-		}
+	return null;
+	
+	
 	
     }
     	@Override
     public void insert(String word, Definition definition) {        
         // Your code here.
-	int index = findIndex(word);
+	
 	
 	Entry e = new Entry(word);
 	e.addDefinition(definition);
 
 
-	if (containsWord(word) == false)
-		{
-		table[index] = e;
-		entries ++;
-		} 
+	
+		
+		int value = hashFunction(word);
+		
+		
+		if (table[value] == null)
+			{
+			table[value] = e;
+			entries ++;
+			}
+		
+		else if (table[value].getWord().equals(word))
+			{
+			table[value].addDefinition(definition);
+			}
+		else
+			{
 
-	else if (table[index].getWord() != null)
-		{
-		table[index].addDefinition(definition);
-		}
-	
-	else
-		{
-		rebuild();
-		}
+			int i = value;
+				i ++;
+				while (2 == 1+1)
+					{
+					if (i==value)
+						{
+						break;
+						}
+
+					if (i == table.length)
+						{
+						i = 0;
+						}
+
+					if (table[i] == null)
+						{
+						table[i] = e;
+						entries ++;
+						break;
+						}
+
+					if (table[i].getWord().equals(word))
+						{
+						table[i].addDefinition(definition);
+						break;
+						}
+
+					
+
+					
+
+					i++;
+					}
+			}
 
 	
 	
-    }
+
+	
+	
+    }*/
 }
