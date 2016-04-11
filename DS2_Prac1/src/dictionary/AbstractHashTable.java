@@ -92,10 +92,10 @@ public abstract class AbstractHashTable  extends Monitorable implements Dictiona
 	e.addDefinition(definition);
 	int index = findIndex(word);
 
-	if (index ==-1)
+	/*if (index ==-1)
 		{
 		return;
-		}
+		}*/
 
 	if (containsWord(word) == false)
 		{

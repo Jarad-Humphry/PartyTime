@@ -36,14 +36,11 @@ public class LPHashTable extends AbstractHashTable {
 			}
 
 		i = index;
-		
+		i++;
 		while (table[i]!=null)
 
 			{
-			if (i == table.length)
-				{
-				i = 0;
-				}
+			
 
 			if (table[i].getWord().equals(word))
 				{
@@ -57,6 +54,10 @@ public class LPHashTable extends AbstractHashTable {
 			else
 				{
 				i ++;
+				if (i >= table.length)
+					{
+					i = 0;
+					}
 				}
 			}
 		return i;

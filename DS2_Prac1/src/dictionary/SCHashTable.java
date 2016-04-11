@@ -58,6 +58,14 @@ public class SCHashTable extends AbstractHashTable {
 			{
 			return true;
 			}
+		else
+			{
+			CH = CH.getNext();
+			}
+		}
+	if (CH.getWord().equals(word))
+		{
+		return true;
 		}
 	return false;	
     }
@@ -132,10 +140,17 @@ public class SCHashTable extends AbstractHashTable {
 					}
 				CH = CH.getNext();
 				}
-			ChainedEntry newCH = new ChainedEntry(word, table[index]);
-			table[index] = newCH;
-			newCH.addDefinition(definition);
-			entries ++;
+			if (CH.getWord().equals(word))
+					{
+					CH.addDefinition(definition);
+					}
+			else
+				{
+				ChainedEntry newCH = new ChainedEntry(word, table[index]);
+				table[index] = newCH;
+				newCH.addDefinition(definition);
+				entries ++;
+				}
 			}
 		}
 	

@@ -36,10 +36,10 @@ public class QPHashTable extends AbstractHashTable {
 			}
 
 		i = index;
-      k++;
+      		k++;
 		i=index + k*k;
       
-      if (i>table.length)
+      if (i>=table.length)
          {
          i = i%table.length;
          }
@@ -52,27 +52,29 @@ public class QPHashTable extends AbstractHashTable {
 			   return -1;
 			   }
 
-			if (i == table.length)
-				{
-				i = 0;
-				}
+			
 
 			if (table[i].getWord().equals(word))
 				{
 				return i;
 				}
+
+			if (i == table.length)
+				{
+				i = 0;
+				}
 			
 			
 			else
-				{
-				k++;
-      		i=index + k*k;
+			{
+			k++;
+      			i=index + k*k;
             
-            if (i>table.length)
-               {
-               i = i%table.length;
-               }
-      		}
+			    if (i>=table.length)
+			       {
+			       i = i%table.length;
+			       }
+      			}
       	}
 		return i;
 		

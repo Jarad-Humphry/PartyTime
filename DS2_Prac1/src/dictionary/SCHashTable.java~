@@ -20,7 +20,7 @@ public class SCHashTable extends AbstractHashTable {
      */
     protected SCHashTable(final int size) {
 	super(size); 
-        this.table = new Entry[size];
+        this.table = new ChainedEntry[size];
         this.entries = 0;
     }
   
@@ -58,6 +58,14 @@ public class SCHashTable extends AbstractHashTable {
 			{
 			return true;
 			}
+		else
+			{
+			CH = CH.getNext();
+			}
+		}
+	if (CH.getWord().equals(word))
+		{
+		return true;
 		}
 	return false;	
     }
@@ -132,6 +140,10 @@ public class SCHashTable extends AbstractHashTable {
 					}
 				CH = CH.getNext();
 				}
+			if (CH.getWord().equals(word))
+					{
+					CH.addDefinition(definition);
+					}
 			ChainedEntry newCH = new ChainedEntry(word, table[index]);
 			table[index] = newCH;
 			newCH.addDefinition(definition);
