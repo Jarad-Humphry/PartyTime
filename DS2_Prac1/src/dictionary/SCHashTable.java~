@@ -95,7 +95,8 @@ public class SCHashTable extends AbstractHashTable {
 					return CH.getDefinitions();
 					}
 				}
-			return null;
+			
+			return CH.getDefinitions();
 			}
 		}
 	
@@ -144,10 +145,13 @@ public class SCHashTable extends AbstractHashTable {
 					{
 					CH.addDefinition(definition);
 					}
-			ChainedEntry newCH = new ChainedEntry(word, table[index]);
-			table[index] = newCH;
-			newCH.addDefinition(definition);
-			entries ++;
+			else
+				{
+				ChainedEntry newCH = new ChainedEntry(word, table[index]);
+				table[index] = newCH;
+				newCH.addDefinition(definition);
+				entries ++;
+				}
 			}
 		}
 	

@@ -95,7 +95,8 @@ public class SCHashTable extends AbstractHashTable {
 					return CH.getDefinitions();
 					}
 				}
-			return null;
+			
+			return CH.getDefinitions();
 			}
 		}
 	
@@ -109,7 +110,7 @@ public class SCHashTable extends AbstractHashTable {
 	int index = findIndex(word);
 	if (index == -1)
 		{
-		//return;
+		return;
 		}
 
 	else if (table[index]==null)

@@ -41,6 +41,7 @@ SCHashTable.class \
  Loader.class \
  WordType.class \
  DataReader.class \
+ PrimeSequence.class \
  Randomizer.class \
  Nonsense.class \
  LoadTest.class \
