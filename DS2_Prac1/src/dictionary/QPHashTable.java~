@@ -24,6 +24,7 @@ public class QPHashTable extends AbstractHashTable {
 		int i;
 		int index = hashFunction(word);
 		int k = 0;
+		incProbeCount();
 		
 		if (table[index] == null)
 			{
@@ -47,6 +48,7 @@ public class QPHashTable extends AbstractHashTable {
 		while (table[i]!=null)
 
 			{
+			incProbeCount();
 			if (k==table.length)
 			   {
 			   return -1;
@@ -59,10 +61,10 @@ public class QPHashTable extends AbstractHashTable {
 				return i;
 				}
 
-			if (i == table.length)
+			/*if (i == table.length)
 				{
 				i = 0;
-				}
+				}*/
 			
 			
 			else

@@ -85,6 +85,10 @@ public abstract class AbstractHashTable  extends Monitorable implements Dictiona
 		}
 	
     }
+	public int whatIndex(String word)
+		{
+		return findIndex(word);
+		}
     
     public void insert(String word, Definition definition) {        
         // Your code here.
@@ -92,10 +96,10 @@ public abstract class AbstractHashTable  extends Monitorable implements Dictiona
 	e.addDefinition(definition);
 	int index = findIndex(word);
 
-	/*if (index ==-1)
+	if (index ==-1)
 		{
 		return;
-		}*/
+		}
 
 	if (containsWord(word) == false)
 		{

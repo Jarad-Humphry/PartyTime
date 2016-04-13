@@ -1,0 +1,10 @@
+public JUnit testLPHashtable{
+	LPHashTable table = new LPHashTable(10);
+
+	@Test
+	public testTableSize(){
+	    int size = table.getSize()
+	    assert(size, 10);
+	}
+
+}

@@ -1,0 +1,137 @@
+testing dictionary.LPHashTable for search ...
+Probe count: 373568216
+Probe count average: 373568.216
+tableSize: 3739
+Load factor: 1.0
+java -cp bin SearchTest dictionary.QPHashTable 3739 lexicon.txt 100 1000
+
+testing dictionary.QPHashTable for search ...
+Probe count: 155228598
+Probe count average: 155228.598
+tableSize: 3739
+Load factor: 0.9994650976196844
+java -cp bin SearchTest dictionary.SCHashTable 3739 lexicon.txt 100 1000
+
+testing dictionary.SCHashTable for search ...
+Probe count: 200513
+Probe count average: 200.513
+tableSize: 3739
+Load factor: 1.0
+java -cp bin SearchTest dictionary.LPHashTable 4985 lexicon.txt 100 1000
+
+testing dictionary.LPHashTable for search ...
+Probe count: 860648
+Probe count average: 860.648
+tableSize: 4987
+Load factor: 0.7497493483055946
+java -cp bin SearchTest dictionary.QPHashTable 4985 lexicon.txt 100 1000
+
+testing dictionary.QPHashTable for search ...
+Probe count: 386549
+Probe count average: 386.549
+tableSize: 4987
+Load factor: 0.7497493483055946
+java -cp bin SearchTest dictionary.SCHashTable 4985 lexicon.txt 100 1000
+
+testing dictionary.SCHashTable for search ...
+Probe count: 175202
+Probe count average: 175.202
+tableSize: 4987
+Load factor: 0.7497493483055946
+java -cp bin SearchTest dictionary.LPHashTable 7478 lexicon.txt 100 1000
+
+testing dictionary.LPHashTable for search ...
+Probe count: 214583
+Probe count average: 214.583
+tableSize: 7481
+Load factor: 0.49979949204651786
+java -cp bin SearchTest dictionary.QPHashTable 7478 lexicon.txt 100 1000
+
+testing dictionary.QPHashTable for search ...
+Probe count: 166356
+Probe count average: 166.356
+tableSize: 7481
+Load factor: 0.49979949204651786
+java -cp bin SearchTest dictionary.SCHashTable 7478 lexicon.txt 100 1000
+
+testing dictionary.SCHashTable for search ...
+Probe count: 149912
+Probe count average: 149.912
+tableSize: 7481
+Load factor: 0.49979949204651786
+
+
+
+
+
+
+testing dictionary.LPHashTable for load ...
+Probe count: 404042
+Table size: 3739
+table.size(): 3739
+tableSize: 3739
+Load factor: 1.0
+java -cp bin LoadTest dictionary.QPHashTable 3739 lexicon.txt
+
+testing dictionary.QPHashTable for load ...
+Probe count: 71626
+Table size: 3739
+table.size(): 3737
+tableSize: 3739
+Load factor: 0.9994650976196844
+java -cp bin LoadTest dictionary.SCHashTable 3739 lexicon.txt
+
+testing dictionary.SCHashTable for load ...
+Probe count: 7111
+Table size: 3739
+table.size(): 3739
+tableSize: 3739
+Load factor: 1.0
+java -cp bin LoadTest dictionary.LPHashTable 4985 lexicon.txt
+
+testing dictionary.LPHashTable for load ...
+Probe count: 21990
+Table size: 4987
+table.size(): 3739
+tableSize: 4987
+Load factor: 0.7497493483055946
+java -cp bin LoadTest dictionary.QPHashTable 4985 lexicon.txt
+
+testing dictionary.QPHashTable for load ...
+Probe count: 16764
+Table size: 4987
+table.size(): 3739
+tableSize: 4987
+Load factor: 0.7497493483055946
+java -cp bin LoadTest dictionary.SCHashTable 4985 lexicon.txt
+
+testing dictionary.SCHashTable for load ...
+Probe count: 6620
+Table size: 4987
+table.size(): 3739
+tableSize: 4987
+Load factor: 0.7497493483055946
+java -cp bin LoadTest dictionary.LPHashTable 7478 lexicon.txt
+
+testing dictionary.LPHashTable for load ...
+Probe count: 13714
+Table size: 7481
+table.size(): 3739
+tableSize: 7481
+Load factor: 0.49979949204651786
+java -cp bin LoadTest dictionary.QPHashTable 7478 lexicon.txt
+
+testing dictionary.QPHashTable for load ...
+Probe count: 12714
+Table size: 7481
+table.size(): 3739
+tableSize: 7481
+Load factor: 0.49979949204651786
+java -cp bin LoadTest dictionary.SCHashTable 7478 lexicon.txt
+
+testing dictionary.SCHashTable for load ...
+Probe count: 6106
+Table size: 7481
+table.size(): 3739
+tableSize: 7481
+Load factor: 0.49979949204651786

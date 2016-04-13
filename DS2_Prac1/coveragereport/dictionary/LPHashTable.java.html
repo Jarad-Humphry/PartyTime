@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>LPHashTable.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">.</a> &gt; <a href="index.source.html" class="el_package">dictionary</a> &gt; <span class="el_source">LPHashTable.java</span></div><h1>LPHashTable.java</h1><pre class="source lang-java linenums">package dictionary;
+import java.util.List;
+/**
+ * Simple hash table implementation of Dictionary using linear probing.
+ * 
+ * @author Stephan Jamieson 
+ * @version 24/4/2015
+ */
+public class LPHashTable extends AbstractHashTable {
+
+    /**
+     * Create an LPHashTable with DEFAULT_SIZE table.
+     */ 
+<span class="fc" id="L14">    public LPHashTable() { super(); }</span>
+    
+    /**
+     * Create an LPHashTable with the given default size table.
+     */
+<span class="fc" id="L19">    public LPHashTable(int size) { super(size); }    </span>
+    
+	protected int findIndex(String word) {
+		
+
+		int i;
+<span class="fc" id="L25">		int index = hashFunction(word);</span>
+<span class="fc" id="L26">		int k = 1;</span>
+<span class="fc" id="L27">		incProbeCount();</span>
+
+<span class="fc bfc" id="L29" title="All 2 branches covered.">		if (table[index] == null)</span>
+			{
+<span class="fc" id="L31">			return index;</span>
+			}
+		
+<span class="fc bfc" id="L34" title="All 2 branches covered.">		if (table[index].getWord().equals(word))</span>
+			{
+<span class="fc" id="L36">			return index;</span>
+			}
+
+<span class="fc" id="L39">		i = index;</span>
+<span class="fc" id="L40">		i++;</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">		if (i &gt;= table.length)</span>
+			{
+<span class="fc" id="L43">			i = 0;</span>
+			}
+		
+<span class="fc bfc" id="L46" title="All 2 branches covered.">		while (table[i]!=null)</span>
+
+			{
+<span class="fc" id="L49">			incProbeCount();</span>
+
+<span class="pc bpc" id="L51" title="1 of 2 branches missed.">			if (table[i].getWord().equals(word))</span>
+				{
+<span class="nc" id="L53">				return i;</span>
+				}
+			
+<span class="fc bfc" id="L56" title="All 2 branches covered.">			if (i==index)</span>
+				{
+<span class="fc" id="L58">				return -1;</span>
+				}
+			else
+				{
+<span class="fc" id="L62">				i ++;</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">				if (i &gt;= table.length)</span>
+					{
+<span class="fc" id="L65">					i = 0;</span>
+					}
+				}
+			}
+<span class="fc" id="L69">		return i;</span>
+		
+		
+	}
+
+	/*@Override
+    public boolean containsWord(String word) {
+	// Your code here.
+        int value = hashFunction(word);
+	
+	if (table[value] == null)
+		{
+		return false;
+		}
+	if (table[value].getWord().equals(word))
+		{
+		return true;
+		}
+
+	if (table.length &lt;= value)
+		{
+		return false;
+		}
+
+	else
+		{
+		int i = value;
+		i ++;
+		while (table[i] != null)
+			{
+			if (i==value)
+				{
+				return false;
+				}
+
+			if (i == table.length)
+				{
+				i = 0;
+				}
+
+			if (table[i].getWord().equals(word))
+				{
+				return true;
+				}
+
+			i++;
+			}
+		return false;
+
+		
+		}
+	
+    }
+    	@Override
+    public List&lt;Definition&gt; getDefinitions(String word) {
+	// Your code here.
+	int index = hashFunction(word); 
+	for (int i = 0; i&lt;=table.length; i ++)
+		{
+		index = index + i;
+		if (index&gt;=table.length)
+			{
+			index = index - table.length;
+			}
+		
+		if (table[index] == null)
+			{
+			return null;
+			}
+
+		else if (table[index].getWord().equals(word))
+			{
+			return table[index].getDefinitions();
+			}
+		}
+	return null;
+	
+	
+	
+    }
+    	@Override
+    public void insert(String word, Definition definition) {        
+        // Your code here.
+	
+	
+	Entry e = new Entry(word);
+	e.addDefinition(definition);
+
+
+	
+		
+		int value = hashFunction(word);
+		
+		
+		if (table[value] == null)
+			{
+			table[value] = e;
+			entries ++;
+			}
+		
+		else if (table[value].getWord().equals(word))
+			{
+			table[value].addDefinition(definition);
+			}
+		else
+			{
+
+			int i = value;
+				i ++;
+				while (2 == 1+1)
+					{
+					if (i==value)
+						{
+						break;
+						}
+
+					if (i == table.length)
+						{
+						i = 0;
+						}
+
+					if (table[i] == null)
+						{
+						table[i] = e;
+						entries ++;
+						break;
+						}
+
+					if (table[i].getWord().equals(word))
+						{
+						table[i].addDefinition(definition);
+						break;
+						}
+
+					
+
+					
+
+					i++;
+					}
+			}
+
+	
+	
+
+	
+	
+    }*/
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

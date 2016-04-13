@@ -1,0 +1,15 @@
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import org.junit.Test;
+
+public class TestLPHashtable{
+	LPHashTable table = new LPHashTable(10);
+
+	@Test
+	public void testhashFunction(){
+	    int value = hashFunction(minion);
+	    assert(value, 8);
+	return;
+	}
+
+}

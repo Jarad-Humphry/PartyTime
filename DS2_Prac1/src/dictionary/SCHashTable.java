@@ -13,12 +13,12 @@ public class SCHashTable extends AbstractHashTable {
     /**
      * Create an LPHashTable with DEFAULT_SIZE table.
      */ 
-    protected SCHashTable() { this(DEFAULT_SIZE); }
+    public SCHashTable() { this(DEFAULT_SIZE); }
     
     /**
      * Create a table with the given default size. (For use by sub classes.) 
      */
-    protected SCHashTable(final int size) {
+    public SCHashTable(final int size) {
 	super(size); 
         this.table = new ChainedEntry[size];
         this.entries = 0;
@@ -39,14 +39,15 @@ public class SCHashTable extends AbstractHashTable {
     public boolean containsWord(String word) {
 	// Your code here.
    int value = findIndex(word);
-	
+	incProbeCount();
 	if (table[value]  == null)
 		{
 		return false;
 		}
 
 	ChainedEntry CH = table[value];
-
+	
+	
 	if (table[value].getWord().equals(word))
 		{
 		return true;
@@ -54,6 +55,7 @@ public class SCHashTable extends AbstractHashTable {
 
 	else while (CH.getNext() != null)
 		{
+		incProbeCount();
 		if (CH.getWord().equals(word))
 			{
 			return true;
@@ -63,6 +65,7 @@ public class SCHashTable extends AbstractHashTable {
 			CH = CH.getNext();
 			}
 		}
+	incProbeCount();
 	if (CH.getWord().equals(word))
 		{
 		return true;
@@ -81,7 +84,9 @@ public class SCHashTable extends AbstractHashTable {
 		{
         	int index = findIndex(word);
 		ChainedEntry CH = table[index];
-		
+
+		incProbeCount();
+
 		if (CH.getWord().equals(word))
 			{
 			return CH.getDefinitions();
@@ -90,11 +95,19 @@ public class SCHashTable extends AbstractHashTable {
 			{
 			while (CH.getNext() != null)
 				{
+				incProbeCount();
 				if (CH.getWord().equals(word))
 					{
 					return CH.getDefinitions();
 					}
+				CH = CH.getNext();
 				}
+			incProbeCount();
+			if (CH.getWord().equals(word))
+					{
+					return CH.getDefinitions();
+					}
+				CH = CH.getNext();
 			
 			return CH.getDefinitions();
 			}
@@ -108,6 +121,8 @@ public class SCHashTable extends AbstractHashTable {
 	Entry e = new Entry(word);
 	e.addDefinition(definition);
 	int index = findIndex(word);
+	incProbeCount();
+
 	if (index == -1)
 		{
 		return;
@@ -134,6 +149,7 @@ public class SCHashTable extends AbstractHashTable {
 			{
 			while (CH.getNext()!=null)
 				{
+				incProbeCount();
 				if (CH.getWord().equals(word))
 					{
 					CH.addDefinition(definition);
@@ -141,6 +157,7 @@ public class SCHashTable extends AbstractHashTable {
 					}
 				CH = CH.getNext();
 				}
+			incProbeCount();
 			if (CH.getWord().equals(word))
 					{
 					CH.addDefinition(definition);

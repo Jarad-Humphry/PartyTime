@@ -1,4 +1,5 @@
-import test.PrimeSequence;
+//package dictionary;
+//import test.PrimeSequence;
 import dictionary.AbstractHashTable;
 import dictionary.Loader;
 //
@@ -30,12 +31,16 @@ public class LoadTest {
 	int tableSize = prime.next();
         final AbstractHashTable table = createTable(args[0], tableSize);
         final Loader loader = new Loader(table);
-	loader.load(new File("data/" + args[2]));
+	loader.load(new File("./data/" + args[2]));
 
+	double entries = table.size();
+	double dSize = tableSize;
 	System.out.println("");
 	System.out.println("Probe count: " + table.getProbeCount());
 	System.out.println("Table size: " + tableSize);
-	System.out.println("Load factor: " + table.size()/tableSize);
+	System.out.println("table.size(): " + table.size());
+	System.out.println("tableSize: " + tableSize);
+	System.out.println("Load factor: " + table.loadFactor());
 
         // Your code here.
     }

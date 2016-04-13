@@ -1,0 +1,118 @@
+testing dictionary.LPHashTable for search ...
+Probe count: 373606816
+Probe count average: 373606.816
+tableSize: 3739
+Load factor: 1.0
+
+testing dictionary.QPHashTable for search ...
+Probe count: 155630696
+Probe count average: 155630.696
+tableSize: 3739
+Load factor: 0.9994650976196844
+
+testing dictionary.SCHashTable for search ...
+Probe count: 200710
+Probe count average: 200.71
+tableSize: 3739
+Load factor: 1.0
+
+testing dictionary.LPHashTable for search ...
+Probe count: 856883
+Probe count average: 856.883
+tableSize: 4987
+Load factor: 0.7497493483055946
+
+testing dictionary.QPHashTable for search ...
+Probe count: 384370
+Probe count average: 384.37
+tableSize: 4987
+Load factor: 0.7497493483055946
+
+testing dictionary.SCHashTable for search ...
+Probe count: 174616
+Probe count average: 174.616
+tableSize: 4987
+Load factor: 0.7497493483055946
+
+testing dictionary.LPHashTable for search ...
+Probe count: 214630
+Probe count average: 214.63
+tableSize: 7481
+Load factor: 0.49979949204651786
+
+testing dictionary.QPHashTable for search ...
+Probe count: 166700
+Probe count average: 166.7
+tableSize: 7481
+Load factor: 0.49979949204651786
+
+testing dictionary.SCHashTable for search ...
+Probe count: 150186
+Probe count average: 150.186
+tableSize: 7481
+Load factor: 0.49979949204651786
+
+
+
+testing dictionary.LPHashTable for load ...
+Probe count: 404042
+Table size: 3739
+table.size(): 3739
+tableSize: 3739
+Load factor: 1.0
+
+testing dictionary.QPHashTable for load ...
+Probe count: 71626
+Table size: 3739
+table.size(): 3737
+tableSize: 3739
+Load factor: 0.9994650976196844
+
+testing dictionary.SCHashTable for load ...
+Probe count: 7111
+Table size: 3739
+table.size(): 3739
+tableSize: 3739
+Load factor: 1.0
+
+testing dictionary.LPHashTable for load ...
+Probe count: 21990
+Table size: 4987
+table.size(): 3739
+tableSize: 4987
+Load factor: 0.7497493483055946
+
+testing dictionary.QPHashTable for load ...
+Probe count: 16764
+Table size: 4987
+table.size(): 3739
+tableSize: 4987
+Load factor: 0.7497493483055946
+
+testing dictionary.SCHashTable for load ...
+Probe count: 6620
+Table size: 4987
+table.size(): 3739
+tableSize: 4987
+Load factor: 0.7497493483055946
+
+testing dictionary.LPHashTable for load ...
+Probe count: 13714
+Table size: 7481
+table.size(): 3739
+tableSize: 7481
+Load factor: 0.49979949204651786
+
+testing dictionary.QPHashTable for load ...
+Probe count: 12714
+Table size: 7481
+table.size(): 3739
+tableSize: 7481
+Load factor: 0.49979949204651786
+
+testing dictionary.SCHashTable for load ...
+Probe count: 6106
+Table size: 7481
+table.size(): 3739
+tableSize: 7481
+Load factor: 0.49979949204651786

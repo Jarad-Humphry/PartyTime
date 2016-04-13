@@ -24,7 +24,8 @@ public class LPHashTable extends AbstractHashTable {
 		int i;
 		int index = hashFunction(word);
 		int k = 1;
-		
+		incProbeCount();
+
 		if (table[index] == null)
 			{
 			return index;
@@ -37,10 +38,15 @@ public class LPHashTable extends AbstractHashTable {
 
 		i = index;
 		i++;
+		if (i >= table.length)
+			{
+			i = 0;
+			}
+		
 		while (table[i]!=null)
 
 			{
-			
+			incProbeCount();
 
 			if (table[i].getWord().equals(word))
 				{

@@ -38,19 +38,19 @@ AbstractHashTable.class \
 LPHashTable.class \
 QPHashTable.class \
 SCHashTable.class \
- Loader.class \
- WordType.class \
- DataReader.class \
- PrimeSequence.class \
- Randomizer.class \
- Nonsense.class \
- LoadTest.class \
- SearchTest.class \
-AutoTest.class \
+Loader.class \
+WordType.class \
+DataReader.class \
+PrimeSequence.class \
+Randomizer.class \
+Nonsense.class \
+LoadTest.class \
+SearchTest.class \
 
 
 
-	
+
+
 
 # The following two targets deal with the mutual dependency between Dictionary and Entry
 Entry.class: Dictionary.class
@@ -58,24 +58,48 @@ Entry.class: Dictionary.class
 Dictionary.class:
 	rm -rf $(BINDIR)/dictionary/Entry.class $(BINDIR)/dictionary/Dictionary.class
 	javac $(JFLAGS) $(SRCDIR)/dictionary/Entry.java $(SRCDIR)/dictionary/Dictionary.java
-	
-		
+
+
 # Rules for generating documentation
 doc:
 	javadoc -d $(DOCDIR) $(SRCDIR)/dictionary/*.java 
 # Rules for unit testing
 # Add additional Testxx.class file to this line and to TestSuite.java
-test_classes: 
+test_classes:all TestLPHashtable.class TestQPHashtable.class TestSCHashtable.class TestSuite.class 
 
 test: test_classes
 	java -ea -cp $(BINDIR):$(JUNIT) org.junit.runner.JUnitCore TestSuite
-	
+
 # Rules for generating tests
 jacoco.exec: test_classes
 	java -ea -javaagent:$(LIB)/jacoco/jacocoagent.jar -cp $(BINDIR):$(JUNIT) org.junit.runner.JUnitCore TestSuite
 
 report: jacoco.exec
 	java -cp $(BINDIR):$(CLI):$(JACOCO):$(ASM):$(TOOLS) Report --reporttype html .
+
+#run loadtest
+loadtest:
+	java -cp bin LoadTest dictionary.LPHashTable 3739 lexicon.txt
+	java -cp bin LoadTest dictionary.QPHashTable 3739 lexicon.txt
+	java -cp bin LoadTest dictionary.SCHashTable 3739 lexicon.txt
+	java -cp bin LoadTest dictionary.LPHashTable 4985 lexicon.txt
+	java -cp bin LoadTest dictionary.QPHashTable 4985 lexicon.txt
+	java -cp bin LoadTest dictionary.SCHashTable 4985 lexicon.txt
+	java -cp bin LoadTest dictionary.LPHashTable 7478 lexicon.txt
+	java -cp bin LoadTest dictionary.QPHashTable 7478 lexicon.txt
+	java -cp bin LoadTest dictionary.SCHashTable 7478 lexicon.txt
+
+#run searchtest
+searchtest:
+	java -cp bin SearchTest dictionary.LPHashTable 3739 lexicon.txt 100 1000
+	java -cp bin SearchTest dictionary.QPHashTable 3739 lexicon.txt 100 1000
+	java -cp bin SearchTest dictionary.SCHashTable 3739 lexicon.txt 100 1000
+	java -cp bin SearchTest dictionary.LPHashTable 4985 lexicon.txt 100 1000
+	java -cp bin SearchTest dictionary.QPHashTable 4985 lexicon.txt 100 1000
+	java -cp bin SearchTest dictionary.SCHashTable 4985 lexicon.txt 100 1000
+	java -cp bin SearchTest dictionary.LPHashTable 7478 lexicon.txt 100 1000
+	java -cp bin SearchTest dictionary.QPHashTable 7478 lexicon.txt 100 1000
+	java -cp bin SearchTest dictionary.SCHashTable 7478 lexicon.txt 100 1000
 
 clean:
 	@rm -f  $(BINDIR)/*.class
