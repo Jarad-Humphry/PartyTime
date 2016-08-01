@@ -67,8 +67,15 @@ public class TestSCHashtable{
 		table2.insert("yes", d2);
 		//table2.insert("what", d1);
 		//assertEquals("[(noun) nah]", table.getDefinitions("oops").toString());
-		assertEquals("[(noun) cool]", table2.getDefinitions("yes").toString());
-		assertEquals("[(noun) nah]", table2.getDefinitions("oops").toString());
+		//System.out.println(table2.getDefinitions("oops"));
+                //System.out.println(table2.getDefinitions("oops").toString());
+		ArrayList<Entry> list = new ArrayList<Entry>(10);
+		list = table.getWords();
+		list.add(
+		ArrayList<Entry> list2 = new ArrayList<Entry>(10);
+		list2 = table.getWords();
+		//assertEquals(list, table2.getDefinitions("yes"));
+		//assertEquals(list2, table2.getDefinitions("oops"));
 		assertEquals(null, table.getDefinitions("zxcv"));
 		assertEquals(false, table.isEmpty());
 		table.empty();
@@ -78,6 +85,9 @@ public class TestSCHashtable{
 		assertEquals(true, table.isEmpty());
 		
 		}
+//java.lang.String<[(noun) cool]> 
+//java.util.ArrayList<[(noun) cool]>
+
 
 		
 	@Test
