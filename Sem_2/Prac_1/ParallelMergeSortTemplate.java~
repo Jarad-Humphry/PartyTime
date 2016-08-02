@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.RecursiveAction;
 
 public class ParallelMergeSort extends RecursiveAction {
 	private int[] arr;
@@ -32,6 +33,46 @@ public class ParallelMergeSort extends RecursiveAction {
 
     private void sequentialMerge(int mid) {
          //implement the merge
+	int i = this.start;
+	int k = mid + 1;
+	int[] result = new int[this.end - this.start];	
+
+	while (i != mid && k != this.end)
+		{
+		if (i <= k)
+			{
+			result.append(arr[k]);
+			 k++;
+			}
+
+		else if (i >= k)
+			{
+			result.append(arr[i]);
+			i++;
+			}
+		}
+	
+	if (i == mid)
+		{
+		while (k != this.end)
+			{
+			result.append(arr[k]);
+			k++;
+			}
+		}
+
+	if (k == this.end)
+		{
+		while (i != mid)
+			{
+			result.append(arr[i]);
+			i++;
+			}
+		}
+	
+	arr = result;
+	
+
 	
 
     }

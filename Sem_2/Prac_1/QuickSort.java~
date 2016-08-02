@@ -1,0 +1,32 @@
+import java.util.Arrays;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.RecursiveAction;
+
+public class QuickSort extends RecursiveAction
+	{
+	private int[] arr;
+
+	private QuickSort(int[] arr)
+		{
+		this.arr = arr;
+		}
+
+	@Override
+	protected void compute()
+		{
+		
+		}
+
+	private void swap(int x, int y) 
+		{
+		int temp = array[x];
+		arr[x] = arr[y];
+		arr[y] = temp;
+		}
+
+	private void split()
+		{
+		
+		}
+
+	}
