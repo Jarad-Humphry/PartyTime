@@ -5,28 +5,69 @@ import java.util.concurrent.RecursiveAction;
 public class QuickSort extends RecursiveAction
 	{
 	private int[] arr;
+	private int left;
+	private int right;
+	
 
-	private QuickSort(int[] arr)
+
+
+	public QuickSort (int[] arr, int left, int right)
 		{
 		this.arr = arr;
+		this.left = left;
+		this.right = right;
 		}
+
+	
 
 	@Override
 	protected void compute()
 		{
-		
+		if (right > left)
+			{
+			int piv = split(left, right, arr);
+			invokeAll(
+				new QuickSort(arr, left, piv),
+				new QuickSort(arr, piv + 1, right) );
+			}
 		}
 
 	private void swap(int x, int y) 
 		{
-		int temp = array[x];
+		int temp = arr[x];
 		arr[x] = arr[y];
 		arr[y] = temp;
 		}
 
-	private void split()
+	public int split(int min, int max, int[] Arr)
 		{
-		
+		int l = min;
+		int m = max;
+		int piv = Arr[min];
+		whileLoop: while (true)
+			{
+			for1: for (l = min; l < max; l ++)
+				{
+				if (Arr[l] > piv)
+					{
+					break for1;
+					}
+				}
+			for2: for (m = max; m > min; m --)
+				{
+				if (Arr[m] < piv)
+					{
+					break for2;
+					}
+				}
+			if (l>=m)
+				{
+				return m;
+				}
+			
+			swap(m, l);
+			
+			}
 		}
 
 	}

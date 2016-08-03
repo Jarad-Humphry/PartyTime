@@ -72,7 +72,7 @@ public class ParallelMergeSort extends RecursiveAction {
 		{
 		while (count2 < arrayMax.length)
 			{
-			arr[j] = arrayMin[count2];
+			arr[j] = arrayMax[count2];
 			j ++;
 			count2 ++;
 			//System.out.println("c");

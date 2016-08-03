@@ -1,4 +1,4 @@
-# Makefile for Graph Assignment
+# Makefile for Sort Assignment
 
 LIB = lib
 SRCDIR = src
@@ -27,7 +27,9 @@ vpath %.class $(BINDIR)/graph:$(BINDIR)/utils:$(BINDIR)
 
 #default rule - will be invoked by make
 all: ParallelMergeSort.class \
+QuickSort.class \
 Driver.class \
+
 
 
 # Rules for generating documentation
