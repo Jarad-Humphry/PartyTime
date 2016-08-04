@@ -7,15 +7,16 @@ public class QuickSort extends RecursiveAction
 	private int[] arr;
 	private int left;
 	private int right;
-	
+	private int threshHold;
 
 
 
-	public QuickSort (int[] arr, int left, int right)
+	public QuickSort (int[] arr, int left, int right, int threshHold)
 		{
 		this.arr = arr;
 		this.left = left;
 		this.right = right;
+		this.threshHold = threshHold;
 		}
 
 	
@@ -24,12 +25,18 @@ public class QuickSort extends RecursiveAction
 	protected void compute()
 		{
 		if (right > left)
-			{
-			int piv = split(left, right, arr);
-			invokeAll(
-				new QuickSort(arr, left, piv),
-				new QuickSort(arr, piv + 1, right) );
-			}
+			/*if (this.right - this.left <= this.threshHold)
+				{
+				Arrays.sort(arr, this.left, this.right);
+				return;
+				}
+			else*/
+				{
+				int piv = split(left, right);
+				invokeAll(
+					new QuickSort(arr, left, piv, this.threshHold),
+					new QuickSort(arr, piv + 1, right, this.threshHold) );
+				}
 		}
 
 	private void swap(int x, int y) 
@@ -38,34 +45,75 @@ public class QuickSort extends RecursiveAction
 		arr[x] = arr[y];
 		arr[y] = temp;
 		}
-
-	public int split(int min, int max, int[] Arr)
+	
+	/*private int pivotFinder(int left, int right)
 		{
-		int l = min;
-		int m = max;
-		int piv = Arr[min];
+		if (arr.length < 3)
+			{
+			return arr[0];
+			}
+		int A = arr[0];
+		int B = arr[1];
+		int C = arr[arr.length-1];
+
+		if (A > B)
+			{
+			if (B > C)
+				{
+				return B;
+				}
+			else if (A > C)
+				{
+				return C;
+				}
+			else 
+				{
+				return A;
+				}
+			}
+		else
+			{
+			if (A > C)
+				{
+				return A;
+				} 
+			else if (B > C)
+				{
+				return C;
+				}
+			else
+				{	
+				return B;
+				}
+			}
+		
+		
+		}*/
+
+	public int split(int min, int max)
+		{
+		
+
+		int left = min - 1;
+		int right = max + 1;
+		//int piv = pivotFinder(left, right);
+		int piv = arr[min];
 		whileLoop: while (true)
 			{
-			for1: for (l = min; l < max; l ++)
+
+			
+			while (arr[++left] < piv);
+
+			while (arr[--right] > piv);
+
+
+			
+			if (left>=right)
 				{
-				if (Arr[l] > piv)
-					{
-					break for1;
-					}
-				}
-			for2: for (m = max; m > min; m --)
-				{
-				if (Arr[m] < piv)
-					{
-					break for2;
-					}
-				}
-			if (l>=m)
-				{
-				return m;
+				return right;
 				}
 			
-			swap(m, l);
+			swap(left, right);
 			
 			}
 		}
