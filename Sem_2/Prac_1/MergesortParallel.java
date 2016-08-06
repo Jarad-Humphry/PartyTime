@@ -2,12 +2,12 @@ import java.util.Arrays;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
-public class ParallelMergeSort extends RecursiveAction {
+public class MergesortParallel extends RecursiveAction {
 	private int[] arr;
     private int start, end;
     private int threshold;
 
-    public ParallelMergeSort(int[] arr, int start, int end, int threshold) {
+    public MergesortParallel(int[] arr, int start, int end, int threshold) {
             this.arr = arr;
             this.start = start;
             this.end = end;

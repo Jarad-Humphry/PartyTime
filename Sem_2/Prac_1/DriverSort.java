@@ -3,12 +3,13 @@ import java.util.Random;
 import java.lang.*;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
+import java.io.*;
 
-public class Driver
+public class DriverSort
 	{
 	static long startTime = 0;
 
-	public static void main	(String[] args)
+	public static void main	(String[] args) throws FileNotFoundException, UnsupportedEncodingException
 		{
 		System.out.println("its running");
 		String sort = args[0];
@@ -28,6 +29,9 @@ public class Driver
 		//int[] Arr2 = new int[ArraySize];
 		long[] Arr3 = new long[5];
 		long[] Arr4 = new long[5];
+		double speedup;
+		PrintWriter wr = new PrintWriter(args[4], "UTF-8");
+		
 
 		//System.out.println("b");
 
@@ -123,8 +127,14 @@ public class Driver
 							//System.out.println("The shortest parasort time is: " + Arr4[0]); 
 					
 				}
+			speedup = (double)sortTime/minTime;
+
 			System.out.println(ArraySize + "	" + Threads + "	" + minTime + "	" + (double)sortTime/minTime);
+			
+			wr.println(ArraySize + "	" + Threads + "	" + minTime + "	" + (double)sortTime/minTime);
+
 			}
+		wr.close();
 		}	
 
 	public static int randomNum ()

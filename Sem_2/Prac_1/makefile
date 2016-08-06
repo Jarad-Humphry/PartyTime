@@ -26,9 +26,10 @@ vpath %.class $(BINDIR)/graph:$(BINDIR)/utils:$(BINDIR)
 	$(JAVAC)  $(JFLAGS)  $<
 
 #default rule - will be invoked by make
-all: ParallelMergeSort.class \
-QuickSort.class \
-Driver.class \
+all: MergesortParallel.class \
+QuickSortParallel.class \
+testdriver.class \
+DriverSort.class \
 
 
 
@@ -38,7 +39,7 @@ doc: all
 
 # Rules for unit testing
 # Add additional Testxx.class file to this line and to TestSuite.java
-test_classes: all TestClusterBuilder.class TestGraph.class TestDoublets.class  TestSuite.class 
+test_classes: all TestQuickSort.class  TestSuite.class 
 
 test: test_classes
 	java -ea -cp $(BINDIR):$(JUNIT) org.junit.runner.JUnitCore TestSuite

@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 
-public class QuickSort extends RecursiveAction
+public class QuickSortParallel extends RecursiveAction
 	{
 	private int[] arr;
 	private int left;
@@ -11,7 +11,7 @@ public class QuickSort extends RecursiveAction
 
 
 
-	public QuickSort (int[] arr, int left, int right, int threshHold)
+	public QuickSortParallel (int[] arr, int left, int right, int threshHold)
 		{
 		this.arr = arr;
 		this.left = left;
@@ -27,10 +27,13 @@ public class QuickSort extends RecursiveAction
 		if (right > left)
 			if (right - left <= threshHold)
 				{
-				Arrays.sort(arr, left, right);
+				
+				Arrays.sort(arr, left, right + 1);
+				//System.out.println(Arrays.toString(Arrays.))
 				return;
 				}
 			else
+
 				{
 				int piv = split(left, right);
 				invokeAll(
